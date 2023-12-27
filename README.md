@@ -1,4 +1,4 @@
-:::::::::::::::Part -1::::::::::::::::::::::::::
+:::::::::::::::Part -1::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 1. Run the container image infracloudio/csvserver:latest in background and check if it's running
     the image was not running as expected so checked the logs.
@@ -30,4 +30,4 @@
    run docker container
       docker run -d -v "$(pwd)/inputFile:/csvserver/inputdata" infracloudio/csvserver:latest
 
-:::::::::::::::::::::::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
