@@ -23,12 +23,9 @@
        docker stop fbb7946dd8b4
        docker rm fbb7946dd8b4
 5. Same as (4), run the container and make sure,The application is accessible on the host at http://localhost:9393 Set the environment variable CSVSERVER_BORDER to have value Orange.
-
-   set the envirnoment variable
-      export CSVSERVER_BORDER=Orange
-   
-   run docker container
-      docker run -d -v "$(pwd)/inputFile:/csvserver/inputdata" infracloudio/csvserver:latest
+  
+   run docker container with below command
+      docker run -d --name csvserver -p 9393:9300 --env CSVSERVER_BORDER=Orange -v "$(pwd)/inputFile:/csvserver/inputdata" infracloudio/csvserver:latest
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
