@@ -24,7 +24,9 @@ Refer script
     csvserver/solution/gencsv.sh
 
  run the container in the background with the file generated in the previous step
-    
+ 
+    docker run -d --name csvserver -p 9393:9300 --env CSVSERVER_BORDER=Orange -v "$(pwd)/inputFile:/csvserver/inputdata" infracloudio/csvserver:latest
+
 
       
      
