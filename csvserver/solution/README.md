@@ -23,7 +23,8 @@ Refer script
 
     csvserver/solution/gencsv.sh
 
-
+ run the container in the background with the file generated in the previous step
+    
 
       
      
