@@ -25,7 +25,24 @@ Refer script
 
  run the container in the background with the file generated in the previous step
  
-    docker run -d --name csvserver -p 9393:9300 --env CSVSERVER_BORDER=Orange -v "$(pwd)/inputFile:/csvserver/inputdata" infracloudio/csvserver:latest
+    docker run -d -v "$(pwd)/inputFile:/csvserver/inputdata" infracloudio/csvserver:latest
+
+
+Accessed the container shell to find the port on which the application is listening
+  
+    docker exec -it <container_id> /bin/bash
+    
+Check the port using the command
+
+    netstat -tulpn
+ 
+Noted the port (e.g., 9300) and exit the container. Stop and remove the running container
+   
+    docker stop <container_id>
+    docker rm <container_id>
+
+Executed the following command to run the container and ensure that the application is accessible on the host at http://localhost:9393. Set the environment variable CSVSERVER_BORDER to have the value Orange
+
 
 
       
