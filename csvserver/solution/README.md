@@ -17,7 +17,7 @@ Found the error
     2023/12/27 15:03:29 error while reading the file "/csvserver/inputdata": open /csvserver/inputdata: no such file or directory
 
 
-Then to resolve the issue with the container, created the script(gencsv.sh) to generate CSV File:
+Then to resolve the issue with the container, created the script(gencsv.sh) to generate CSV File(inputFile):
 
 Refer script
 
