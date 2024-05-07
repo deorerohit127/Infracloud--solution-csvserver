@@ -1,6 +1,5 @@
 version: '3'
 services:
-test
   csvserver:
     image: infracloudio/csvserver:latest
     ports:
