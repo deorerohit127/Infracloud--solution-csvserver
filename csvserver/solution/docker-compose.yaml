@@ -17,3 +17,51 @@ services:
       - ./prometheus:/etc/prometheus
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
+      [[_TOC_]]
+[[_TOSP_]]
+# How are we using Power Automate
+Power automate is being used to help with some of the integrations between Pager Duty, Azure Dev Ops, Slack, & Teams currently.
+#Potention Use Cases
+- Escalate from SF Dev Team
+  - to Dev Ops
+  - to Jira
+#Current Flow Triggers
+## ITSC
+  - Auto Close work items after CR moves to Change Implemented.
+    - Queries Dev Ops for stories w/ CR ID that matches the CR case ID and state equals Ready for Prd or Staged for Release.
+    - Loops through and closes each record.
+## Pager Duty - [DrawIO Diagram](https://xplortech.sharepoint.com/:u:/r/sites/InformationTechnology/Shared%20Documents/Processes/ITSC%20Integration%20Processes/Pager%20Duty%20Incidents%20to%20Incidents%20in%20ITSC.drawio?csf=1&web=1&e=BEEJj9)
+  - Incident created
+    - Calls get ITSC userID 
+    - Calls get ITSC contactID
+  - Incident acknowledged
+    - Posts a message in slack. No actual updates currently.
+  - Incident Resolved - (This is via a webhook. PD wasn't successfully triggering the event.)
+    - Calls get caseID
+    - Sets case to Resolved.
+    - Sets Resolution Type to Resolved and a static resolution description.
+    - Enhancement ideas
+      - Set the incident start time & resolution time.
+      - Set resolution description to a dynamic value. May need to create a flow to listen for note added or lookup the pd incident when it is resolved. _Attempted to create a Note added flow, but the trigger event requires a particular case id as the input. Can't be dynamic._
+## Email 
+  - Received in SRE inbox.
+    - Creates Dev Ops workitem on SRE board.
+## Azure Dev Ops
+  - SRE Support & Incident created
+    - Creates ITSC Request or Incident
+    - Posts message in Slack
+  - MOD, Horizon, Quest Support work item created
+    - Posts a message in Slack
+    - Does not post if Carryover == Partial
+## Webhook received
+  - Get ITSC caseID that has PD incident ID set.
+  - Get ITSC userID from Dev Ops work item creator.
+  - Get ITSC userID from email address.
+  - Get ITSC userID from name.
+  - Get ITSC contactID from email address.
+  - Create ITSC CR 
+    - (Dev Ops extension actually updates the stories.)
+  - Notify users via Teams & Email to update Timesheet (Randy's flow only currently).
+# Ownership
+- Shared services need to be co-owned by svc_powerautomate so that other team members can help manage.
+
